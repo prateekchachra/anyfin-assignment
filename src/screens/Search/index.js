@@ -30,7 +30,8 @@ const Search = ({navigation}) => {
     }, []);
 
 
-    const filteredData = () => data && query !== '' ? data.filter(item => item.name.includes(query)) : [];
+    const filteredData = () => data && query !== '' ? data.filter(item => 
+        item.name.toLowerCase().includes(query.toLowerCase())) : [];
  
     return (
         <View style={styles.container}>

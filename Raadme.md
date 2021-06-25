@@ -15,3 +15,5 @@
 4. I would have sanitized the input for the country for it to be validated before sending to the server to ignore security concerns.
 5. I would have chosen a design system like react-native-paper or material design, and added a different font to change the look, feel and the UX for the application.
 6. I would have implemented an error boundary for the application.
+7. I would have created a seperate utilities file for common functions like converting the population number into a formatted number with comma seperated values.
+8. I would have covered Country Details in much more detail, like adding a google maps modal for dislaying its location, displaying the time in the country's timezone etc.

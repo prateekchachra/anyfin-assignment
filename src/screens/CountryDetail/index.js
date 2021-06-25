@@ -7,8 +7,6 @@ import Header from './Header';
 const CountryDetail = ({route, navigation}) => {
 
     const {country} = route.params;
-    console.log(country)
-  
 
     const {name, nativeName, flag, capital, population,  currencies} = country;
     

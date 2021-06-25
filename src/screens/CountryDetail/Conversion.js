@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { View, Text,TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-
+import { View, Text, StyleSheet } from 'react-native';
+import Toast from 'react-native-toast-message';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -18,7 +18,14 @@ const Conversion = ({currency}) => {
         fetch(`https://free.currconv.com/api/v7/convert?q=${queryStr}&apiKey=${CONVERSION_API_KEY}`).then(result => result.json().
         then(resultJson => setResult((parseFloat(resultJson.results[queryStr].val) * amount))))
         .catch(err => {
-            console.log(err)
+            console.log(err);
+            Toast.show({
+                type: 'error',
+                text1: 'Error',
+                text2: 'Some error occured. Please try again',
+                visibilityTime: 2000,
+                autoHide: true,
+              });
         });
     }
 

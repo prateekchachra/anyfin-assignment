@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
 import * as Animatable from 'react-native-animatable';
+import Toast from 'react-native-toast-message';
 
 
 const {height} = Dimensions.get('window');
@@ -24,7 +25,13 @@ const Search = ({navigation}) => {
             res.json().then(resJson =>  setData(resJson)))
         .catch(err => {
             console.log(err);
-            //Toast
+            Toast.show({
+                type: 'error',
+                text1: 'Error',
+                text2: 'Some error occured. Please try again',
+                visibilityTime: 2000,
+                autoHide: true,
+              });
             setData([]);
         });
     }, []);
@@ -35,7 +42,7 @@ const Search = ({navigation}) => {
  
     return (
         <View style={styles.container}>
-            <Animatable.Text animation="fadeInDown" style={styles.inputLabel}>Select the country for  which you'd like the details</Animatable.Text>
+            <Animatable.Text animation="fadeInDown" style={styles.inputLabel}>Select the country for which you'd like the details</Animatable.Text>
             <View style={styles.autocompleteContainer}>
             <Autocomplete
                 data={filteredData()}

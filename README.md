@@ -1,13 +1,16 @@
-##Euro-Country Search
+#Euro-Country Search
 
-#How to run
+##How to run
 
-1. Make sure you have yarn setup on your computer
+1. Make sure you have Node.JS, Yarn, React Native CLI and Android Studio setup on your computer
+2. Take a clone of this code anywhere on your computer and run 'yarn'.
+3. Open an android simulator from Android Studio or connect a device with developer options enabled and USB debugging
+turned on.
+4. Type 'react-native run-android' on your console and wait till the process finishes.
 
 
 
-
-#What would I have done given more time?
+##What would I have done given more time?
 
 1. I would have implemented redux/React Context for the handling of the Countries state in case of increase in screens and need of handling that state application-bound since it's reusable.
 2. I would have implemented responsiveness by using a library react-native-responsive-screens which uses the Viewport percentages for the height and width

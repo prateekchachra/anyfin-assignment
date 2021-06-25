@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { ScrollView, StyleSheet } from 'react-native';
+import { colors } from '../../constants/theme';
 import Conversion from './Conversion';
 
 import Detail from './Detail';
@@ -30,7 +31,7 @@ const CountryDetail = ({route, navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flexGrow: 1,
-        backgroundColor: '#fff',
+        backgroundColor: colors.PRIMARY_WHITE,
         padding:24
     },
 

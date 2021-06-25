@@ -1,6 +1,7 @@
 
 import React, { Component } from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { colors } from '../constants/theme';
 
 
 const Button = ({onButtonPress, label}) => {
@@ -12,15 +13,9 @@ const Button = ({onButtonPress, label}) => {
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#2c3e50',
-    },
-       
+
     buttonStyle: {
-        backgroundColor: '#41ffee',
+        backgroundColor: colors.PRIMARY_COLOR,
         width: 100,
         height: 40,
         borderRadius: 12,
@@ -29,7 +24,7 @@ const styles = StyleSheet.create({
         margin: 12
     },
     buttonLabelStyle: {
-        color: '#fff',
+        color: colors.PRIMARY_WHITE,
         fontSize: 16,
         fontWeight: 'bold'
     },

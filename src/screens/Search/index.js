@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity,
+     Dimensions, ActivityIndicator } from 'react-native';
 import Autocomplete from 'react-native-autocomplete-input';
 import * as Animatable from 'react-native-animatable';
 import Toast from 'react-native-toast-message';
 
+import {colors} from '../../constants/theme';
 
 const {height} = Dimensions.get('window');
 
@@ -11,6 +13,7 @@ const Search = ({navigation}) => {
 
     const [query, setQuery] = useState('');
     const [data, setData] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const navigateToDetail = (item) => navigation.navigate('CountryDetail', {country: item})
 
@@ -20,9 +23,12 @@ const Search = ({navigation}) => {
         </TouchableOpacity>
     )
     useEffect(() => {
+        setLoading(true);
         fetch('https://restcountries.eu/rest/v2/all',
         {method: 'GET', headers: {'content-type': 'application/json;charset=utf-8'}}).then(res => 
-            res.json().then(resJson =>  setData(resJson)))
+            res.json().then(resJson =>  {
+                setData(resJson);
+            setLoading(false)}))
         .catch(err => {
             console.log(err);
             Toast.show({
@@ -32,7 +38,8 @@ const Search = ({navigation}) => {
                 visibilityTime: 2000,
                 autoHide: true,
               });
-            setData([]);
+              setData([]);
+              setLoading(false);
         });
     }, []);
 
@@ -44,7 +51,8 @@ const Search = ({navigation}) => {
         <View style={styles.container}>
             <Animatable.Text animation="fadeInDown" style={styles.inputLabel}>Select the country for which you'd like the details</Animatable.Text>
             <View style={styles.autocompleteContainer}>
-            <Autocomplete
+            {loading ?  <ActivityIndicator color={colors.PRIMARY_COLOR} size='large'/> 
+            : <Autocomplete
                 data={filteredData()}
                 value={query}
                 inputContainerStyle={styles.inputStyle}
@@ -55,7 +63,7 @@ const Search = ({navigation}) => {
                     keyExtractor: (_, idx) => idx,
                     renderItem: renderCountryItem,
                 }}
-                />
+                />}
             </View>
         </View>
     );
@@ -64,7 +72,7 @@ const Search = ({navigation}) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff'
+        backgroundColor: colors.PRIMARY_WHITE
     },
     autocompleteContainer: {
         flex: 1,

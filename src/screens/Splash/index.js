@@ -1,18 +1,18 @@
-//import liraries
 import React, { useEffect } from 'react';
 import { View, StyleSheet } from 'react-native';
 import LottieView from 'lottie-react-native';
 import * as Animatable from 'react-native-animatable';
 
 
-// create a component
+const ANIM_DURATION = 2000;
+
 const Splash = ({navigation}) => {
 
     useEffect(() => {
         setTimeout(() =>  navigation.reset({
             index: 0,
             routes: [{ name: 'Search' }],
-          }), 2000);
+          }), ANIM_DURATION);
     }, []);
 
     let _animation = null;
@@ -26,19 +26,27 @@ const Splash = ({navigation}) => {
             }}
             source={require('../../assets/animations/search.json')}
         />
-           <Animatable.Text animation="zoomInUp">Country Search</Animatable.Text>
+           <Animatable.Text animation="bounceInLeft" duration={ANIM_DURATION} style={styles.title}>Euro-Country Search</Animatable.Text>
         </View>
     );
 };
 
-// define your styles
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
+        justifyContent: 'space-between',
         alignItems: 'center',
+        backgroundColor: '#fff'
     },
+    title: {
+        position: 'absolute',
+        bottom: 24,
+        fontSize: 24,
+        fontWeight: 'bold',
+        
+    }
 });
 
-//make this component available to the app
+
 export default Splash;
